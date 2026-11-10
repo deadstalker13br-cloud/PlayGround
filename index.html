@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10100f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2310100f'/%3E%3Ctext x='50' y='73' text-anchor='middle' font-size='72' fill='%23edb84f'%3E%E2%9C%B3%3C/text%3E%3C/svg%3E">
+  <title>Banjo Hero — Noite de Bluegrass</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Banjo Hero início"><span class="brand-mark">✳</span><span>BANJO<span class="brand-light">HERO</span></span></a>
+      <div class="top-note"><span class="live-dot"></span> FESTIVAL DA SERRA <span class="top-divider">/</span> PALCO 01</div>
+      <button class="sound-toggle" id="soundToggle" aria-label="Ativar ou desativar som"><span class="sound-icon">♪</span><span id="soundLabel">SOM LIGADO</span></button>
+    </header>
+
+    <section class="intro-row">
+      <div><p class="eyebrow">A NOITE É SUA</p><h1>Solte o <em>dedilhado.</em></h1></div>
+      <p class="intro-copy">Quatro cordas. Um banjo. <strong>Não perca o ritmo.</strong></p>
+    </section>
+
+    <section class="game-layout" aria-label="Jogo Banjo Hero">
+      <aside class="side-panel left-panel">
+        <div class="song-card">
+          <div class="album-art" aria-hidden="true"><div class="moon"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="art-banjo"><i></i></div><div class="art-spark">✦</div><div class="art-caption">VOL. 01<br><b>APPALACHIA</b></div></div>
+          <div class="song-meta"><span class="eyebrow">AGORA TOCANDO</span><h2>Fagulha<br>na Montanha</h2><p>THE PICKIN' PINE</p></div>
+          <div class="song-tags"><span>BLUEGRASS</span><span>116 BPM</span></div>
+        </div>
+        <div class="tip-card"><span class="tip-icon">✳</span><p><strong>DICA DE PALCO</strong><br>Notas douradas valem o dobro. Segure a sequência para multiplicar seus pontos!</p></div>
+      </aside>
+
+      <section class="stage-wrap">
+        <div class="stage-topline"><div><span class="stage-kicker">DESAFIO</span><span class="stage-name">Dedos Ligeiros</span></div><div class="difficulty"><span>●</span><span>●</span><span>●</span><span class="dim">●</span><span class="dim">●</span><small>MÉDIO</small></div></div>
+        <div class="stage-frame">
+          <canvas id="gameCanvas" aria-label="Pista de jogo com quatro cordas"></canvas>
+          <div class="canvas-vignette"></div>
+          <div class="game-overlay" id="gameOverlay">
+            <div class="overlay-content" id="overlayContent">
+              <div class="banjo-emblem">♬</div><p class="overlay-eyebrow">PALCO ABERTO</p><h2>Pronto pra<br><em>fazer barulho?</em></h2>
+              <p class="overlay-copy">Acerte as notas quando chegarem à linha.<br>O público está esperando!</p>
+              <button class="play-button" id="playButton"><span>▶</span> COMEÇAR A TOCAR</button>
+              <div class="key-guide"><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">K</span><span class="keycap">L</span><small>OU TOQUE NAS CORDAS</small></div>
+            </div>
+          </div>
+          <div class="countdown hidden" id="countdown"></div>
+          <div class="pause-badge hidden" id="pauseBadge">Ⅱ&nbsp; PAUSADO <button id="resumeButton">CONTINUAR</button></div>
+          <div class="game-hud">
+            <div class="hud-score"><small>PONTUAÇÃO</small><strong id="score">000000</strong></div>
+            <div class="hud-streak"><div class="streak-flame">✦</div><div><strong id="streak">0</strong><small>SEQUÊNCIA</small></div><div class="multiplier" id="multiplier">×1</div></div>
+            <div class="hud-progress"><small>FAIXA</small><div class="progress-track"><i id="progressBar"></i></div><span id="progressText">0%</span></div>
+          </div>
+          <div class="hit-feedback" id="hitFeedback"></div>
+          <div class="lane-labels" aria-hidden="true"><span>RÉ</span><span>MI</span><span>SOL</span><span>DÓ</span></div>
+        </div>
+        <div class="stage-footer"><div class="audience"><span>✦ ✧ ✦</span><small>O PÚBLICO ESTÁ NO RITMO</small></div><div class="pause-help"><kbd>ESC</kbd> PAUSAR <span>·</span> <kbd>R</kbd> RECOMEÇAR</div></div>
+        <div class="touch-controls" id="touchControls" aria-label="Controles de toque"><button data-lane="0" class="lane-button lane-0"><span>A</span><small>RÉ</small></button><button data-lane="1" class="lane-button lane-1"><span>S</span><small>MI</small></button><button data-lane="2" class="lane-button lane-2"><span>K</span><small>SOL</small></button><button data-lane="3" class="lane-button lane-3"><span>L</span><small>DÓ</small></button></div>
+      </section>
+
+      <aside class="side-panel right-panel">
+        <div class="stat-card"><span class="eyebrow">SEU DESEMPENHO</span><div class="accuracy-ring" id="accuracyRing"><div><strong id="accuracy">—</strong><small>PRECISÃO</small></div></div><div class="stat-line"><span>NOTAS CERTAS</span><b id="hits">0</b></div><div class="stat-line"><span>NOTAS PERDIDAS</span><b id="misses">0</b></div><div class="stat-line best-line"><span>RECORDE LOCAL</span><b id="bestScore">000000</b></div></div>
+        <div class="controls-card"><span class="eyebrow">COMO JOGAR</span><div class="control-row"><span class="mini-keys"><i>A</i><i>S</i><i>K</i><i>L</i></span><p>Pressione a tecla da corda no momento certo.</p></div><div class="control-row"><span class="space-key">ESPAÇO</span><p>Ative o brilho quando seu medidor estiver cheio.</p></div><div class="star-meter"><div><span>BRILHO</span><b id="starPercent">0%</b></div><div class="meter-track"><i id="starBar"></i></div></div></div>
+        <div class="setlist-card"><span class="eyebrow">SETLIST</span><div class="setlist-song"><span class="setlist-num">01</span><span>Fagulha na Montanha<small>THE PICKIN' PINE</small></span><span class="playing-bars"><i></i><i></i><i></i></span></div><div class="setlist-next"><span class="setlist-num">02</span><span>Próxima música<small>EM BREVE</small></span><span class="lock">⌑</span></div></div>
+      </aside>
+    </section>
+    <footer><span>✳ BANJO HERO</span><span>FEITO PRA QUEM TEM RITMO <b>♥</b></span><span>VOLUME 01 · APPALACHIA</span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
